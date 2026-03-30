@@ -11,7 +11,9 @@ namespace tidy {
 
 void HSCAG_4_2_Check::registerMatchers(MatchFinder *Finder) {
     Finder->addMatcher(
-        cxxMethodDecl().bind("method"),
+        cxxMethodDecl(
+            unless(isExpansionInSystemHeader())
+        ).bind("method"),
         this
     );
 }
@@ -24,18 +26,24 @@ void HSCAG_4_2_Check::check(const MatchFinder::MatchResult &Result) {
     const auto *parent = method->getParent();
     if (!parent) return;
 
+    std::string methodName = method->getNameAsString();
+
     for (const auto &base : parent->bases()) {
+
         const auto *baseDecl = base.getType()->getAsCXXRecordDecl();
         if (!baseDecl) continue;
 
         for (const auto *baseMethod : baseDecl->methods()) {
-            if (baseMethod->getName() == method->getName()) {
+
+            if (baseMethod->getNameAsString() == methodName) {
+
                 diag(method->getLocation(),
                      "Method hides base class method");
+                return;
             }
         }
     }
 }
 
-}
-}
+} // namespace tidy
+} // namespace clang
