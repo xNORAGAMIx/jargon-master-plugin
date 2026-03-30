@@ -6,6 +6,7 @@
 #include "checks/HSCAI_2_1_Check.h"
 #include "checks/HSCAA_2_2_Check.h"
 #include "checks/HSCAP_1_1_Check.h"
+#include "checks/HSCAA_2_3_Check.h"
 
 using namespace clang::tidy;
 
@@ -20,6 +21,7 @@ public:
         Factories.registerCheck<HSCAI_2_1_Check>("hscai-2-1");
         Factories.registerCheck<HSCAA_2_2_Check>("hscaa-2-2");
         Factories.registerCheck<HSCAP_1_1_Check>("hscap-1-1");
+        Factories.registerCheck<HSCAA_2_3_Check>("hscaa-2-3");
     }
 };
 
