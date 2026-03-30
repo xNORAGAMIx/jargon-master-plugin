@@ -7,7 +7,7 @@ clang-tidy -list-checks \
 ```
 clang-tidy test.cpp \
   -load ./build/libMyClangTidyPlugin.so \
-  -checks="hscap-*" \
+  -checks="hscaa-*,hscap-*,hscai-*,hscag-*,hscas-*" \
   -- -std=c++17
 ```
 
