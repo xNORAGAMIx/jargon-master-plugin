@@ -10,6 +10,9 @@
 #include "checks/HSCAA_2_4_Check.h"
 #include "checks/HSCAG_4_2_Check.h"
 #include "checks/HSCAS_1_1_Check.h"
+#include "checks/HSCAV_6_2_Check.h"
+#include "checks/HSCAV_6_3_Check.h"
+#include "checks/HSCBC_6_3_Check.h"
 
 using namespace clang::tidy;
 
@@ -28,6 +31,9 @@ public:
         Factories.registerCheck<HSCAA_2_4_Check>("hscaa-2-4");
         Factories.registerCheck<HSCAG_4_2_Check>("hscag-4-2");
         Factories.registerCheck<HSCAS_1_1_Check>("hscas-1-1");
+        Factories.registerCheck<HSCAV_6_2_Check>("hscav-6-2");
+        Factories.registerCheck<HSCAV_6_3_Check>("hscav-6-3");
+        Factories.registerCheck<HSCBC_6_3_Check>("hscbc-6-3");
     }
 };
 
